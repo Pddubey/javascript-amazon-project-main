@@ -1,4 +1,3 @@
-// 1) First step is to save the data
 let productsHTML=``;
 
 products.forEach((product) => {
@@ -47,13 +46,46 @@ products.forEach((product) => {
       Added
     </div>
 
-    <button class="add-to-cart-button button-primary">
+    <button class="add-to-cart-button button-primary js-add-to-cart" 
+    data-product-id="${product.id}"
+    >
       Add to Cart
     </button>
   </div>`;
  
 });
-console.log(productsHTML);
 
 document.querySelector('.js-products-grid').
 innerHTML=productsHTML;
+
+
+document.querySelectorAll('.js-add-to-cart').
+ forEach((button) => {
+  let matchingItem;
+  button.addEventListener('click',()=>{
+    const data=button.dataset;
+    
+    let productId=data.productId;
+    cart.forEach((product)=> {
+      if(productId===product.productId){
+        matchingItem=product;
+      }
+    });
+    if(matchingItem){
+      matchingItem.quantity++;
+    }
+    else{
+      cart.push({
+        productId:productId,
+        quantity:1
+      });
+    }
+   console.log(cart);
+
+
+    
+  });
+
+ });
+
+ 
