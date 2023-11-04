@@ -81,6 +81,7 @@ document.querySelectorAll('.js-add-to-cart').
 
     let productId=button.dataset.productId;
     addToCart(productId); 
+    console.log(cart);
     updateCartQuantity();
 
   });
